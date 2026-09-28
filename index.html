@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f3f5f0" />
+    <meta name="description" content="A clear, practical overview of any GitHub repository." />
+    <title>RepoScope | GitHub Repository Analyzer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="RepoScope home">
+          <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+          <span>repo<span class="brand-light">scope</span></span>
+        </a>
+        <div class="topbar-meta"><span class="api-indicator" id="api-indicator"></span><span id="api-status">GITHUB API <span class="meta-divider">/</span> READY</span></div>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="page-title">
+          <div class="intro-copy">
+            <p class="eyebrow"><span class="eyebrow-index">01</span> REPOSITORY INTELLIGENCE</p>
+            <h1 id="page-title">A clearer view<br />of the code.</h1>
+            <p class="intro-note">One repository. The details that matter.</p>
+          </div>
+          <div class="intro-stamp" aria-hidden="true"><span>PUBLIC DATA</span><span class="stamp-line"></span><span>LIVE LOOKUP</span></div>
+        </section>
+
+        <section class="lookup" aria-label="Analyze a GitHub repository">
+          <form id="analyze-form">
+            <label for="repo-input">REPOSITORY URL OR OWNER/NAME</label>
+            <div class="input-row">
+              <span class="input-prefix" aria-hidden="true">github.com /</span>
+              <input id="repo-input" name="repository" type="text" placeholder="vercel / next.js" autocomplete="url" spellcheck="false" required aria-describedby="lookup-help" />
+              <button id="analyze-button" type="submit"><span class="button-label">Analyze repository</span><span class="button-arrow" aria-hidden="true">&gt;</span></button>
+            </div>
+            <div class="lookup-foot">
+              <span id="lookup-help">Public repositories work instantly. Add a token for private repos.</span>
+              <button class="token-toggle" id="token-toggle" type="button" aria-expanded="false" aria-controls="token-panel">+ ADD TOKEN</button>
+            </div>
+            <div class="token-panel" id="token-panel" hidden>
+              <label for="token-input">PERSONAL ACCESS TOKEN <span>Optional / read-only access recommended</span></label>
+              <input id="token-input" type="password" autocomplete="off" placeholder="ghp_..." />
+              <p>Your token is used for this browser session only and is never saved.</p>
+            </div>
+          </form>
+          <div class="quick-picks" aria-label="Try an example repository">
+            <span>TRY</span>
+            <button type="button" data-repo="vercel/next.js">vercel/next.js</button>
+            <button type="button" data-repo="astral-sh/ruff">astral-sh/ruff</button>
+            <button type="button" data-repo="neovim/neovim">neovim/neovim</button>
+          </div>
+        </section>
+
+        <div class="notice" id="notice" role="status" aria-live="polite" hidden></div>
+
+        <section class="results" id="results" aria-live="polite" hidden>
+          <div class="repo-heading" id="repo-heading"></div>
+          <div class="stat-grid" id="stat-grid"></div>
+
+          <div class="analysis-grid">
+            <section class="panel language-panel" aria-labelledby="language-title">
+              <div class="panel-heading"><div><span class="section-index">A</span><h2 id="language-title">Language mix</h2></div><span class="panel-aside" id="language-total"></span></div>
+              <div id="language-content"></div>
+            </section>
+            <section class="panel signals-panel" aria-labelledby="signals-title">
+              <div class="panel-heading"><div><span class="section-index">B</span><h2 id="signals-title">Project signals</h2></div><span class="panel-aside">FROM THE DEFAULT BRANCH</span></div>
+              <div id="signals-content"></div>
+            </section>
+            <section class="panel tree-panel" aria-labelledby="tree-title">
+              <div class="panel-heading"><div><span class="section-index">C</span><h2 id="tree-title">Repository map</h2></div><span class="panel-aside" id="tree-total"></span></div>
+              <div id="tree-content"></div>
+            </section>
+            <section class="panel activity-panel" aria-labelledby="activity-title">
+              <div class="panel-heading"><div><span class="section-index">D</span><h2 id="activity-title">Latest commit</h2></div><span class="panel-aside">ACTIVITY</span></div>
+              <div id="activity-content"></div>
+            </section>
+          </div>
+          <p class="data-note" id="data-note"></p>
+        </section>
+
+        <section class="empty-state" id="empty-state">
+          <div class="empty-grid" aria-hidden="true"><span>01</span><span>02</span><span>03</span><span>04</span><i></i></div>
+          <div><p class="empty-kicker">YOUR NEXT REPO, DECODED</p><p>Paste a GitHub repository above to see its shape, stack, and signals.</p></div>
+          <span class="empty-arrow" aria-hidden="true">v</span>
+        </section>
+      </main>
+
+      <footer class="footer"><span>RepoScope <span class="footer-divider">/</span> Built for curious developers</span><span>DATA VIA THE GITHUB REST API</span></footer>
+    </div>
+  </body>
+</html>
