@@ -1,5 +1,5 @@
-# reposcope-github-repo-analyzer
-RepoScope - A GitHub Repository Analyzer
+
+SyntaxSearch - A GitHub Repository Analyzer
 
 Contributing
 
